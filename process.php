@@ -10,7 +10,7 @@
   $email='';
   $phone='';
 
- // Checks if save button has been clicked, validates inData and insets to form
+ // Checks if save button has been clicked, validates data and inserts into DB
  if(isset($_POST['save'])){
   $name = $_POST['name'];
   $address = $_POST['address'];
@@ -25,13 +25,13 @@
     $_SESSION['msg_type'] = "danger";
     header("location: index.php");
   }
-  else if(mysqli_num_rows($duplicateEmail)>0)
-  {
-    $_SESSION['message'] = "Email already in use";
+  else if(mysqli_num_rows($duplicateEmail)>0) {
+    $_SESSION['message'] = "Email " . $email . " is already registered";
     $_SESSION['msg_type'] = "danger";
     header("location: index.php");
-  } else if(mysqli_num_rows($duplicatePhone)>0) {
-    $_SESSION['message'] = "Phone already in use";
+  }
+  else if(mysqli_num_rows($duplicatePhone)>0) {
+    $_SESSION['message'] = "Phone number " . $phone . " is already registered";
     $_SESSION['msg_type'] = "danger";
     header("location: index.php");
   }
@@ -52,14 +52,14 @@
 
    $_SESSION['message'] = "User has been deleted from the list";
    $_SESSION['msg_type'] = "danger";
-
    header("location: index.php");
  }
 
- // Checks if edit button has been cliocked and select the ID
+  // Checks if edit button has been cliocked and select the ID
   if(isset($_GET['edit'])){
     $id = $_GET['edit'];
     $update = true;
+
     $result = $mysqli->query("SELECT * FROM data WHERE id=$id") or die($mysqli->error());
     if(@count($result)==1) {
       $row = $result->fetch_array();
@@ -70,7 +70,7 @@
     }
  }
 
- // Checks if update button has been cliocked, validates inData andd updates
+  // Checks if update button has been clicked, validates data and updates
   if(isset($_POST['update'])){
     $id = $_POST['id'];
     $name = $_POST['name'];
@@ -85,16 +85,16 @@
       $_SESSION['message'] = "Someone is already using email: " . $email;
       $_SESSION['msg_type'] = "warning";
       header("location: index.php");
-    } else if(mysqli_num_rows($duplicatePhone)>0) {
+    }
+    else if(mysqli_num_rows($duplicatePhone)>0) {
       $_SESSION['message'] = "Someone is already using phone: " . $phone;
       $_SESSION['msg_type'] = "warning";
       header("location: index.php");
-    } else {
+    }
+    else {
       $mysqli->query("UPDATE data SET name='$name', address='$address', email='$email', phone='$phone' WHERE id=$id") or die($mysql->error);
-
       $_SESSION['message'] = "User has been successfully updated!";
       $_SESSION['msg_type'] = "warning";
-
       header("location: index.php");
   }
  }

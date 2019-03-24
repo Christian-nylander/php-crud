@@ -58,4 +58,17 @@ body {
 .btn {
   font-size: 12px;
   padding: 6px;
+  width: 60px;
+}
+
+#btn1 {
+  background-color: #f3f3f3;
+}
+
+#trash {
+  color: #FFFFFF;
+}
+
+#user-edit {
+  color: gray;
 }

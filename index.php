@@ -2,10 +2,11 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>PHP</title>
+    <title>PHP test</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
@@ -77,19 +78,19 @@
                 <th>Address</th>
                 <th>Email</th>
                 <th>Phone</th>
-                <th colspan="2">Action</th>
+                <th colspan="2">Alternatives</th>
               </tr>
             </thead>
             <?php
             while ($row = $result->fetch_assoc()): ?>
             <tr>
               <td class="td-text"><?php custom_echo($row['name'], 16); ?></td>
-              <td class="td-text"><?php custom_echo($row['address'], 20); ?></td>
+              <td class="td-text"><?php custom_echo($row['address'], 16); ?></td>
               <td class="td-text"><?php custom_echo($row['email'], 20); ?></td>
-              <td class="td-text"><?php custom_echo($row['phone'], 16); ?></td>
+              <td class="td-text"><?php custom_echo($row['phone'], 12); ?></td>
               <td>
-                <a href="index.php?edit=<?php echo $row['id']; ?>" class="btn btn-info">Edit</a>
-                <a href="process.php?delete=<?php echo $row['id']; ?>" class="btn btn-danger">Delete</a>
+                <a href="index.php?edit=<?php echo $row['id']; ?>" id="btn1" class="btn "><i id="user-edit" class="fas fa-user-edit"></i></a>
+                <a href="process.php?delete=<?php echo $row['id']; ?>" class="btn btn-danger"><i id="trash" class="fas fa-trash"></i></a>
               </td>
             </tr>
             <?php endwhile; ?>
