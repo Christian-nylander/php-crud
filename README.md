@@ -13,4 +13,4 @@ Web server: XAMPP.
         PRIMARY KEY (id)
        );
 ```
-5. Navigate to localhost -> phpcrud in the web browser.
+5. Navigate to localhost -> php-crud in the web browser.
